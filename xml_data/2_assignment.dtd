@@ -1,0 +1,32 @@
+<!--In this question, you are to create a DTD for a different version of the data set drawn from the Stanford course catalog. 
+This version encodes the data using ID and IDREF(S) attributes. 
+The XML data is here. https://prod-c2g.s3.amazonaws.com/db/Winter2013/files/courses-ID.xml -->
+
+<!ELEMENT Course_Catalog (Department*)>
+<!ELEMENT Department ANY>
+<!ATTLIST Department Code CDATA #REQUIRED
+                     Chair IDREF #REQUIRED>
+<!ELEMENT Title (#PCDATA)>
+
+<!ELEMENT Professor (First_Name, Middle_Initial, Last_Name)>
+<!ATTLIST Professor InstrID ID #REQUIRED>
+<!ELEMENT First_Name (#PCDATA)>
+<!ELEMENT Middle_Initial (#PCDATA)>
+<!ELEMENT Last_Name (#PCDATA)>
+
+<!ELEMENT Lecturer (First_Name, Middle_Initial, Last_Name)>
+<!ATTLIST Lecturer InstrID ID #REQUIRED>
+
+<!ELEMENT Course (Title, Description*)>
+<!ELEMENT Description (#PCDATA | Courseref)*>
+
+<!ELEMENT Courseref EMPTY>
+<!ATTLIST Courseref Number IDREF #REQUIRED>
+
+<!ATTLIST Course Number ID #REQUIRED
+                 Instructors IDREFS #REQUIRED
+                 Prerequisites IDREFS #IMPLIED
+                 Enrollment CDATA #IMPLIED>
+
+<!ELEMENT Prerequisites (Prereq+)>
+<!ELEMENT Prereq (#PCDATA)>
