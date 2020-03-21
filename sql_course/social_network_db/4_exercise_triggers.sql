@@ -52,7 +52,6 @@ BEGIN
    DELETE FROM Highschooler where id=new.id;
 END;
 
-|
 
 CREATE TRIGGER moved_ahead AFTER UPDATE
 ON Highschooler
